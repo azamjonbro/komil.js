@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Login Page</title>
+    <style>
+        .main-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container" id="login-container">
+        <form id="login-form">
+            <center><h2>AL-ILM o'quv markazi</h2></center>
+            <label for="username">Ism:</label>
+            <input type="text" id="username" placeholder="Ism" name="username" required>
+            
+            <label for="tel">Raqam:</label>
+            <input type="text" id="tel" name="tel" placeholder="+998 ** *** ** **" required>
+            
+            <button type="button" onclick="validateLogin()">Kirish</button>
+        </form>
+    </div>
+
+    <div class="main-container" id="main-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d6001.563352129205!2d69.204832!3d41.226528!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDEzJzM1LjUiTiA2OcKwMTInMTcuNCJF!5e0!3m2!1sru!2s!4v1703617472347!5m2!1sru!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <!-- <script src="index.js"></script> -->
+    <script>
+        function validateLogin() {
+            var username = document.getElementById('username').value;
+            var phoneNumberInput = document.getElementById('tel');
+            var phoneNumber = phoneNumberInput.value.replace(/\s/g, ''); // Remove spaces
+
+            // Ismni tekshirish (faqat imloviy belgilar va raqamlar)
+            var nameRegex = /^[a-zA-Z0-9]+$/;
+            if (!nameRegex.test(username)) {
+                alert('Ism faqat imloviy belgilar va raqamlardan iborat bo\'lishi kerak');
+                return;
+            }
+
+            // Telefon raqamni tekshirish (+998 ** *** ** ** format)
+            var phoneRegex = /^\+998\d{2}\d{3}\d{2}\d{2}$/;
+            if (!phoneRegex.test(phoneNumber)) {
+                alert('Telefon raqamini noto\'g\'ri kiritdingiz. Telefon raqami +998 ** *** ** ** formatda bo\'lishi kerak');
+                return;
+            }
+
+            // Sizning login validatsiyangizni qo'shishingiz mumkin
+            // Masalan, ism va raqamning to'liq to'ldirilganligini tekshirish
+            if (username === '') {
+                alert('Ismni to\'liq kiriting');
+            } else {
+                // Bot token va chat ID ni quyidagi o'zgartiring
+                const botToken = '6630040587:AAFfkaq6lBrXShzWD9uwVMcjaxPh0eUM-No';
+                const chatId = '2043384301';
+
+                // Xabar tayyorlash
+                const message = `Ism: ${username}\nRaqam: ${phoneNumber}`;
+
+                // Telegramga xabar yuborish uchun URL
+                const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+                // Fetch orqali Telegramga xabar yuborish
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Serverdan kelgan javobni ishlash
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.error('Xato yuz berdi:', error);
+                    });
+
+                // Hide the login container
+                document.getElementById('login-container').style.display = 'none';
+
+                // Show the main container
+                document.getElementById('main-container').style.display = 'block';
+
+                alert('Kirish muvaffaqiyatli amalga oshirildi');
+            }
+        }
+    </script>
+</body>
+</html>

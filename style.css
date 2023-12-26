@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: url('./ali.jpg') center center fixed;
+    background-size: cover;
+    display: flex;
+}
+
+.login-container {
+    max-width: 400px;
+    width: 500px;
+    height: 500px;
+    margin: 100px auto;
+    backdrop-filter: blur(20px);
+    /* background-color: rgba(255, 255, 255, 0.8); Oq sahifa foniga o'rnating, opacity 0.8 */
+    padding: 20px;
+    border-radius: 20px; /* Border radius 20 px ga teng */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    background:  #ddd;
+
+}
+
+
+.logo-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%; /* Agar logotip aylana bo'lsa */
+}
+center{
+    margin-top: -120px;
+    margin-bottom: 50px;
+
+}
+form {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd; /* Formaga cheklov qo'shish */
+    padding: 15px;
+    border-radius: 20px;
+    width: 400px;
+    height: 400px;
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); */
+    justify-content: center;
+      
+    
+    
+    /* Border radius 20 px ga teng */
+    /* background-color: rgba(255, 255, 255, 0.9); Forma fonini o'rnating, opacity 0.9 */
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+button {
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+iframe{
+    width: 100vw !important;
+    height: 100vh;
+}
